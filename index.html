@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>label service - Plateforme Numérique Jeunesse</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="description" content="Plateforme d'éducation cybersécurité conçue par et pour les jeunes francophones. Apprenez, partagez et protégez-vous dans l'espace numérique." />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcybersafe5968back.builtwithrocket.new&_v=0.1.2"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-md w-full bg-white rounded-2xl shadow-cyber-lg p-8 text-center">
+            <!-- Logo/Brand -->
+            <div class="mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl mx-auto mb-4 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold text-gradient mb-2">CyberSafe Youth</h1>
+                <p class="text-text-secondary">Plateforme Numérique Jeunesse</p>
+            </div>
+
+            <!-- Loading Animation -->
+            <div class="mb-8">
+                <div class="flex justify-center space-x-2 mb-4">
+                    <div class="w-3 h-3 bg-primary rounded-full animate-bounce"></div>
+                    <div class="w-3 h-3 bg-secondary rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                    <div class="w-3 h-3 bg-accent rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                </div>
+                <p class="text-text-secondary text-sm">Chargement de votre espace sécurisé...</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-surface rounded-full h-2 mb-6">
+                <div class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all duration-1000 ease-out" id="progressBar" style="width: 0%"></div>
+            </div>
+
+            <!-- Status Message -->
+            <p class="text-sm text-text-secondary" id="statusMessage">Initialisation...</p>
+        </div>
+    </div>
+
+    <script>
+        // Page names for navigation
+        const pages = [
+            'accueil_interactif_youth_digital_platform.html',
+            'mon_parcours_d_apprentissage_personalized_dashboard.html',
+            'communaut_jeunes_peer_forum_hub.html',
+            'outils_de_protection_interactive_security_tools.html',
+            'alerte_et_assistance_emergency_response_center.html'
+        ];
+
+        // Loading simulation with progress
+        const progressBar = document.getElementById('progressBar');
+        const statusMessage = document.getElementById('statusMessage');
+        
+        const loadingSteps = [
+            { progress: 20, message: "Vérification de la sécurité..." },
+            { progress: 40, message: "Chargement des modules..." },
+            { progress: 60, message: "Configuration de l'interface..." },
+            { progress: 80, message: "Finalisation..." },
+            { progress: 100, message: "Redirection vers l'accueil..." }
+        ];
+
+        let currentStep = 0;
+        
+        function updateProgress() {
+            if (currentStep < loadingSteps.length) {
+                const step = loadingSteps[currentStep];
+                progressBar.style.width = step.progress + '%';
+                statusMessage.textContent = step.message;
+                currentStep++;
+                
+                if (currentStep === loadingSteps.length) {
+                    // Redirect to the first page after loading is complete
+                    setTimeout(() => {
+                        window.location.href = `pages/${pages[0]}`;
+                    }, 500);
+                } else {
+                    setTimeout(updateProgress, 800);
+                }
+            }
+        }
+
+        // Start loading simulation
+        setTimeout(updateProgress, 500);
+
+        // Fallback redirect in case of any issues
+        setTimeout(() => {
+            if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+                window.location.href = `pages/${pages[0]}`;
+            }
+        }, 5000);
+    </script>
+<script id="dhws-dataInjector" src="/public/dhws-data-injector.js"></script>
+</body>
+</html>
